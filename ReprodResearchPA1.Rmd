@@ -39,7 +39,7 @@ For this part of the assignment, you can ignore the missing values in the datase
 
 ```{r}
 totStepDay <- with(actData, tapply(steps, date, sum, na.rm=T))
-barplot(totStepDay)
+hist(totStepDay, breaks=20, xlab="Total steps per day", main="Total Steps per Day")
 
 ## calculate mean and median number of steps taken per day
 meanStepDay <- mean(totStepDay)
@@ -100,7 +100,7 @@ for (i in 1:length(actDataImp[,1])){
         }      
 }
 totStepDayImp <- with(actDataImp, tapply(steps, date, sum, na.rm=T))
-barplot(totStepDayImp)
+hist(totStepDay, breaks=20, xlab="Total steps per day", main="Total Steps per Day")
 
 ## calculate mean and median number of steps taken per day
 meanStepDayImp <- mean(totStepDayImp)
