@@ -1,7 +1,7 @@
 ---
 title: "Reproducible Research Peer Assessment 1"
 author: "Goran Strangmark"
-date: "Thursday, August 14, 2014"
+date: "Sunday, August 17, 2014"
 output: html_document
 ---
 
@@ -126,14 +126,18 @@ wdss <- subset(actDataImp, weekday=="Monday" | weekday=="Tuesday" |weekday=="Wed
 wess <- subset(actDataImp, weekday=="Saturday" | weekday=="Sunday" )
 meanStep5minWeekday <- with(wdss, tapply(steps, interval, mean, na.rm=T))
 meanStep5minWeekend <- with(wess, tapply(steps, interval, mean, na.rm=T))
-par(mfrow=c(2,1), mar=c(4,4,2,1), oma=c(0,0,2,0))
-plot(meanStep5minWeekend, type="l", col="blue", xaxt="n", xlab="", ylab="average number of steps", main="weekend")
-title(main="Average number of steps  split on weekend and weekdays", outer=TRUE) 
-plot(meanStep5minWeekday, type="l", col= "blue", xlab="5 minute interval index", ylab="average number of steps", main="weekdays")
+
 
 library (ggplot2)
-##qplot
 
+## make a smaller data frame with mean values for each interval index and day category only
+newDF1 <- data.frame(interval=1:numberOfIntervals, mean.steps=meanStep5minWeekday, day.category="Weekday")
+newDF2 <- data.frame(interval=1:numberOfIntervals, mean.steps=meanStep5minWeekend, day.category="Weekend")
+newDF <- rbind(newDF1, newDF2)
+##qplot
+qplot(interval, mean.steps, data=newDF, geom=c("line"), facets=day.category~.)
 
 
 ```
+
+Weekend peak activity occurs later than weekday. Overall weekend activity level is lower than weekday.
