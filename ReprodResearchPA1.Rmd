@@ -140,4 +140,4 @@ qplot(interval, mean.steps, data=newDF, geom=c("line"), facets=day.category~.)
 
 ```
 
-Weekend peak activity occurs later than weekday. Overall weekend activity level is lower than weekday.
+Weekend peak activity occurs later than weekday. Overall weekend activity level is lower than weekday. Reasonable.
